@@ -9,14 +9,10 @@ export class FirebaseHeroService extends HeroService {
   private _path = 'heroes/5aq3A62p8cMx9MmUKahF';
   private emptyHero: Hero;
   private heroesCollection:AngularFirestoreCollection<Hero>;
-  private heroes:Hero[];
 
   constructor(private afs: AngularFirestore) {
     super();
     this.heroesCollection = this.afs.doc<Band>(this._path).collection<Hero>(this._band);
-    this.heroesCollection.valueChanges().subscribe(heroes => {
-      this.heroes = heroes;
-    });
   }
 
   addHero(hero: Hero): Observable<Hero> {
@@ -42,7 +38,7 @@ export class FirebaseHeroService extends HeroService {
   }
 
   getHeroes(): Observable<Hero[]> {
-    return of(this.heroes);
+    return this.heroesCollection.valueChanges();
   }
 
   searchHeroes(term: string): Observable<Hero[]> {
