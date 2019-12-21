@@ -7,8 +7,8 @@ import {Location} from '@angular/common';
 import {HeroDetailComponent} from './hero-detail.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {HeroService} from "../hero.service";
-import {Hero} from "../hero";
+import {Hero} from "../domain/hero";
+import {HeroService} from "../hero-service/hero-service";
 
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;

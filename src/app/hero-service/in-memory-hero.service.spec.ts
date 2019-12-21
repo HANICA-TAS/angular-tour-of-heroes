@@ -1,20 +1,20 @@
-import {HeroService} from './hero.service';
-import {Hero} from "./hero";
-import {defer, of} from "rxjs";
-import {MessageService} from "./message.service";
+import {InMemoryHeroService} from './in-memory-hero.service';
+import {Hero} from "../domain/hero";
+import {defer} from "rxjs";
+import {MessageService} from "../message-service/message.service";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TestBed} from "@angular/core/testing";
 
-describe('HeroService', () => {
+describe('InMemoryHeroService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
   let messageServiceSpy: jasmine.SpyObj<MessageService>;
-  let heroService: HeroService;
+  let heroService: InMemoryHeroService;
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     messageServiceSpy = jasmine.createSpyObj('MessageService', ['add']);
-    heroService = new HeroService(httpClientSpy, messageServiceSpy);
+    heroService = new InMemoryHeroService(httpClientSpy, messageServiceSpy);
 
     TestBed.configureTestingModule({
       imports: [

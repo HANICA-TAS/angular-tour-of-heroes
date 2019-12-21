@@ -4,9 +4,9 @@ import {HeroSearchComponent} from './hero-search.component';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
-import {HeroService} from "../hero.service";
-import {HEROES} from "../mock-heroes";
+import {HEROES} from "../message-service/mock-heroes";
 import {of} from "rxjs";
+import {HeroService} from "../hero-service/hero-service";
 
 describe('HeroSearchComponent', () => {
   let component: HeroSearchComponent;

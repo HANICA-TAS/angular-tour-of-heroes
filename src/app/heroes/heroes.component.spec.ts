@@ -3,9 +3,9 @@ import {HeroesComponent} from './heroes.component';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
-import {HeroService} from '../hero.service';
 import {of} from 'rxjs';
-import {Hero} from "../hero";
+import {Hero} from "../domain/hero";
+import {HeroService} from "../hero-service/hero-service";
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;

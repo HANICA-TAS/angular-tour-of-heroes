@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Hero } from './hero';
-import { HEROES } from './mock-heroes';
-import { Observable, of } from 'rxjs';
-import { MessageService } from './message.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Hero} from '../domain/hero';
+import {Observable, of} from 'rxjs';
+import {MessageService} from '../message-service/message.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+import {HeroService} from "./hero-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class HeroService {
+export class InMemoryHeroService extends HeroService {
   private heroesUrl = 'api/heroes';  // URL to web api
 
   httpOptions = {
@@ -18,7 +18,9 @@ export class HeroService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService) {
+    super();
+  }
 
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {

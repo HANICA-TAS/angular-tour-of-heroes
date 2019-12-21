@@ -91,7 +91,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "codeCoverageExclude": [
+              "/**/*mock*.ts",
+              "/**/*stub*.ts"
+            ]
           }
         },
         "lint": {
