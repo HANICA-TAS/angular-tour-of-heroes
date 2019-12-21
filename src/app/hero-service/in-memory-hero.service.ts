@@ -31,7 +31,7 @@ export class InMemoryHeroService extends HeroService {
       );
   }
 
-  getHero(id: number): Observable<Hero> {
+  getHero(id: string): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
@@ -64,8 +64,8 @@ export class InMemoryHeroService extends HeroService {
     );
   }
 
-  deleteHero(hero: Hero | number): Observable<Hero> {
-    const id = typeof hero === 'number' ? hero : hero.id;
+  deleteHero(hero: Hero | string): Observable<Hero> {
+    const id = typeof hero === 'string' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
 
     return this.http.delete<Hero>(url, this.httpOptions).pipe(

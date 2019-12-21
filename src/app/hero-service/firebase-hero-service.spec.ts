@@ -67,7 +67,7 @@ describe('FirebaseHeroService', () => {
   });
 
   it('when specific hero requested should return expected hero', () => {
-    heroService.getHero(1).subscribe( hero => {
+    heroService.getHero("1").subscribe( hero => {
       expect(hero).toBe(FirestoreStub.hero);
     })
   });

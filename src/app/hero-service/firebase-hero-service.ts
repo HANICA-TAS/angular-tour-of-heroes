@@ -1,6 +1,6 @@
 import {HeroService} from "./hero-service";
 import {Hero} from "../domain/hero";
-import {Observable, of} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {Band} from "../domain/band";
 
@@ -20,21 +20,29 @@ export class FirebaseHeroService extends HeroService {
   }
 
   addHero(hero: Hero): Observable<Hero> {
-    this.heroesCollection.add(hero).then();
-    return of(hero);
+    let sendResult = new Subject<Hero>();
+    this.heroesCollection.add(hero).then((docRef) => {
+      this.heroesCollection.doc(docRef.id).update({
+        id: docRef.id
+      }).then(() => {
+        hero.id = docRef.id;
+        sendResult.next(hero);
+      })
+    });
+    return sendResult.asObservable();
   }
 
-  deleteHero(hero: Hero | number): Observable<Hero> {
+  deleteHero(hero: Hero | string): Observable<Hero> {
     this.afs.doc<Hero>(this._path + "/" + this._band + "/" + hero).delete().then();
     return of(this.emptyHero);
   }
 
-  getHero(id: number): Observable<Hero> {
+  getHero(id: string): Observable<Hero> {
     return this.afs.doc<Hero>(this._path + "/" + this._band + "/" + id).valueChanges();
   }
 
   getHeroes(): Observable<Hero[]> {
-    return this.heroesCollection.valueChanges();
+    return of(this.heroes);
   }
 
   searchHeroes(term: string): Observable<Hero[]> {

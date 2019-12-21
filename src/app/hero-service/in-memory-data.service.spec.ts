@@ -15,10 +15,10 @@ describe('InMemoryDataService', () => {
   });
 
   it('generates 11 when there are no heroes', () => {
-    expect(service.genId([])).toBe(11);
+    expect(service.genId([])).toBe("11");
   });
 
   it('generates one plus max hero when there are enough heroes', () => {
-    expect(service.genId([{ id: 20, name: 'Tornado' }])).toBe(21);
+    expect(service.genId([{ id: "20", name: 'Tornado' }])).toBe("21");
   });
 });
