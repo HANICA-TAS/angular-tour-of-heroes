@@ -1,3 +1,5 @@
+<app-login></app-login>
+
 <div *ngIf="hero">
 
     <h2>{{hero.name | uppercase}} Details</h2>
@@ -7,7 +9,7 @@
         <input [(ngModel)]="hero.name" placeholder="name"/>
       </label>
     </div>
-    
+
     <button (click)="save()">save</button>
     <button (click)="goBack()">go back</button>
 

@@ -15,7 +15,12 @@ import {HeroSearchComponent} from './hero-search/hero-search.component';
 import {heroServiceProvider} from "./hero-service/hero-service.provider";
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {AngularFirestore} from "@angular/fire/firestore";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import { LoginComponent } from './login/login.component';
+import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
 
 @NgModule({
   declarations: [
@@ -24,12 +29,16 @@ import {AngularFirestore} from "@angular/fire/firestore";
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
@@ -37,7 +46,7 @@ import {AngularFirestore} from "@angular/fire/firestore";
     AppRoutingModule
   ],
   providers: [
-    heroServiceProvider, AngularFirestore
+    heroServiceProvider, AngularFirestore, AngularFireAuth, AngularFireAuthGuard
   ],
   bootstrap: [
     AppComponent

@@ -9,6 +9,9 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {Hero} from "../domain/hero";
 import {HeroService} from "../hero-service/hero-service";
+import {LoginComponent} from "../login/login.component";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {AngularFireAuthStub} from "../login/login.component.spec";
 
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
@@ -26,8 +29,8 @@ describe('HeroDetailComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, HttpClientModule],
-      declarations: [HeroDetailComponent],
-      providers: [{provide: HeroService, useValue: heroServiceSpy},
+      declarations: [HeroDetailComponent, LoginComponent],
+      providers: [{provide: AngularFireAuth, useValue: AngularFireAuthStub}, {provide: HeroService, useValue: heroServiceSpy},
         {
           provide: ActivatedRoute, useValue: {
             snapshot: {

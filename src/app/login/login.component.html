@@ -1,0 +1,14 @@
+<div *ngIf="afAuth.user | async as user; else showLogin">
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/heroes">Heroes</a>
+    <a (click)="logout()" routerLink="/login">Logout</a>
+  </nav>
+
+  Logged in as {{ user.displayName }}
+</div>
+<ng-template #showLogin>
+  <nav>
+  <a (click)="login()" routerLink="/dashboard">Login with Google</a>
+  </nav>
+</ng-template>
