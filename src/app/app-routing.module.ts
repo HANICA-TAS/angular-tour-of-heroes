@@ -7,7 +7,7 @@ import {LoginComponent} from "./login/login.component";
 import {AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
+const redirectLoggedInToItems = () => redirectLoggedInTo(['dashboard']);
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
