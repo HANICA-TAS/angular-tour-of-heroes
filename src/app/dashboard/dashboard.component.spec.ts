@@ -8,9 +8,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {of} from "rxjs";
 import {HEROES} from "../message-service/mock-heroes";
 import {HeroService} from "../hero-service/hero-service";
-import {LoginComponent} from "../login/login.component";
-import {AngularFireAuthStub} from "../login/login.component.spec";
-import {AngularFireAuth} from "@angular/fire/auth";
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -23,8 +20,8 @@ describe('DashboardComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, FormsModule, HttpClientModule ],
-      declarations: [ DashboardComponent, HeroSearchComponent, LoginComponent ],
-      providers: [{provide: AngularFireAuth, useValue: AngularFireAuthStub},{ provide: HeroService, useValue: heroServiceSpy }]
+      declarations: [ DashboardComponent, HeroSearchComponent ],
+      providers: [{ provide: HeroService, useValue: heroServiceSpy }]
     })
     .compileComponents();
   }));

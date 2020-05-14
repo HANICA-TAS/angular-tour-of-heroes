@@ -6,9 +6,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {of} from 'rxjs';
 import {Hero} from "../domain/hero";
 import {HeroService} from "../hero-service/hero-service";
-import {LoginComponent} from "../login/login.component";
-import {AngularFireAuth} from "@angular/fire/auth";
-import {AngularFireAuthStub} from "../login/login.component.spec";
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
@@ -21,8 +18,8 @@ describe('HeroesComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, HttpClientModule],
-      declarations: [HeroesComponent, LoginComponent],
-      providers: [{provide: AngularFireAuth, useValue: AngularFireAuthStub}, { provide: HeroService, useValue: heroServiceSpy }]
+      declarations: [HeroesComponent],
+      providers: [{ provide: HeroService, useValue: heroServiceSpy }]
     })
       .compileComponents();
   }));

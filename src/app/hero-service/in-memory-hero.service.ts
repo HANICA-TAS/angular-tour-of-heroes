@@ -10,7 +10,7 @@ import {HeroService} from "./hero-service";
   providedIn: 'root'
 })
 export class InMemoryHeroService extends HeroService {
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = 'http://localhost:8080/api/heroes';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -7,16 +7,21 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 /**
  * @type { import("protractor").Config }
  */
+
+const puppeteer = require('puppeteer');
+
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
+    browserName: 'chrome',
     chromeOptions: {
-      args: [ "--headless" ]
+      useAutomationExtension: false,
+      args: ['--disable-web-security', '--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222'],
+      binary: puppeteer.executablePath()
     },
-    browserName: 'chrome'
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
